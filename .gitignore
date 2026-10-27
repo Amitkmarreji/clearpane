@@ -1,0 +1,14 @@
+# Downloaded filter lists (rebuild with: node tools/build.mjs)
+tools/cache/
+
+# Chrome writes its indexed rulesets here when loading unpacked
+_metadata/
+
+# Optional test kit
+tools/test/node_modules/
+tools/test/out/
+tools/test/package-lock.json
+
+# Store packages (node tools/package.mjs)
+dist/
+store/src/shots/

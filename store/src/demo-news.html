@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The Hillside Courier</title>
+<!-- A made-up news page for the store screenshots. Every "ad" here is fake and
+     uses common ad slot names. The scripts and pixels point at well-known ad and
+     tracker hostnames, but tools/test/store-shots.mjs maps every hostname to its
+     own local server, so nothing reaches the real services: the screenshots
+     only show which requests the real filter lists stop. -->
+<script src="http://www.googletagmanager.com:8765/gtm.js?id=GTM-DEMO"></script>
+<script src="http://www.google-analytics.com:8765/analytics.js"></script>
+<script src="http://securepubads.g.doubleclick.net:8765/tag/js/gpt.js"></script>
+<script src="http://pagead2.googlesyndication.com:8765/pagead/js/adsbygoogle.js"></script>
+<script src="http://connect.facebook.net:8765/en_US/fbevents.js"></script>
+<script src="http://static.hotjar.com:8765/c/hotjar-demo.js"></script>
+<script src="http://cdn.taboola.com:8765/libtrc/demo/loader.js"></script>
+<script src="http://c.amazon-adsystem.com:8765/aax2/apstag.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font: 15px/1.55 Georgia, "Times New Roman", serif; color: #1b1b1b; background: #fbfaf7; }
+  .masthead { text-align: center; padding: 18px 0 10px; border-bottom: 3px double #1b1b1b; margin: 0 32px; }
+  .masthead h1 { margin: 0; font-size: 40px; letter-spacing: .02em; }
+  .masthead p { margin: 4px 0 0; font: 12px system-ui, sans-serif; color: #666; text-transform: uppercase; letter-spacing: .12em; }
+  nav { display: flex; gap: 22px; justify-content: center; padding: 8px 0; font: 600 13px system-ui, sans-serif; border-bottom: 1px solid #ddd; margin: 0 32px; }
+  .page { display: grid; grid-template-columns: 1fr 300px; gap: 28px; padding: 20px 32px; }
+  .kicker { font: 700 12px system-ui, sans-serif; color: #b45309; text-transform: uppercase; letter-spacing: .1em; }
+  h2 { font-size: 30px; line-height: 1.15; margin: 6px 0 10px; }
+  .photo { height: 190px; border-radius: 4px; background: linear-gradient(160deg, #a7d3e8 0%, #d9eef3 45%, #8fbf7f 46%, #5f9a52 100%); position: relative; overflow: hidden; }
+  .photo::after { content: ""; position: absolute; left: 58%; top: 18%; width: 46px; height: 46px; border-radius: 50%; background: #fff7c2; box-shadow: 0 0 40px #fff3a0; }
+  .caption { font: 12px system-ui, sans-serif; color: #777; margin: 4px 0 12px; }
+  .side h3 { font: 700 13px system-ui, sans-serif; text-transform: uppercase; letter-spacing: .08em; border-bottom: 2px solid #1b1b1b; padding-bottom: 4px; }
+  .side ol { padding-left: 18px; margin: 0; }
+  .side li { margin-bottom: 10px; }
+
+  /* The fake ads. */
+  .top-ad { margin: 14px 32px 0; height: 90px; border-radius: 6px; display: flex; align-items: center; justify-content: space-between; padding: 0 28px;
+    background: repeating-linear-gradient(45deg, #ff3d6e, #ff3d6e 14px, #ff5a83 14px, #ff5a83 28px); color: #fff; font: 900 26px system-ui, sans-serif; }
+  .top-ad b { background: #ffe14d; color: #1b1b1b; padding: 8px 16px; border-radius: 30px; font-size: 18px; }
+  .sidebar-ad { height: 250px; border-radius: 6px; margin-bottom: 18px; padding: 18px; color: #fff; font: 800 22px/1.2 system-ui, sans-serif;
+    background: radial-gradient(circle at 70% 30%, #7c3aed, #3b0764); position: relative; }
+  .sidebar-ad small { display: block; font-size: 13px; font-weight: 500; margin-top: 8px; opacity: .85; }
+  .sidebar-ad i { position: absolute; bottom: 16px; left: 18px; right: 18px; background: #22d3ee; color: #082f49; font-style: normal; text-align: center; padding: 10px; border-radius: 6px; font-size: 16px; }
+  .banner-ad { margin: 14px 0; height: 120px; border-radius: 6px; display: flex; gap: 14px; align-items: center; padding: 14px; background: #fff4d6; border: 2px dashed #f59e0b; font: 700 17px system-ui, sans-serif; }
+  .banner-ad img { width: 92px; height: 92px; border-radius: 4px; flex: none; }
+  .ad-label { position: absolute; top: 4px; right: 8px; font: 10px system-ui, sans-serif; opacity: .7; }
+  .gdpr-banner { position: fixed; left: 0; right: 0; bottom: 0; background: #111827; color: #f9fafb; padding: 18px 32px; display: flex; gap: 20px; align-items: center; font: 14px system-ui, sans-serif; box-shadow: 0 -8px 30px rgba(0,0,0,.25); }
+  .gdpr-banner button { font: 700 14px system-ui, sans-serif; padding: 10px 18px; border-radius: 6px; border: 0; background: #3b82f6; color: #fff; }
+  .gdpr-banner button + button { background: transparent; border: 1px solid #6b7280; }
+</style>
+</head>
+<body>
+  <header class="masthead">
+    <h1>The Hillside Courier</h1>
+    <p>Tuesday edition · Local news, weather and gardens</p>
+  </header>
+  <nav><span>News</span><span>Weather</span><span>Gardens</span><span>Sport</span><span>Letters</span></nav>
+
+  <div class="top-ad" id="ad_leaderboard">ZAPPO SNEAKERS — MEGA SALE <b>70% OFF TODAY ONLY</b></div>
+
+  <div class="page">
+    <article>
+      <div class="kicker">Weather</div>
+      <h2>Sunniest autumn in a decade brings late blooms to the valley</h2>
+      <div class="photo"></div>
+      <p class="caption">The north meadow on Monday afternoon.</p>
+      <p>Gardeners across the valley are reporting a second flush of roses and sweet peas after six weeks of dry, bright weather. The town's weather station logged 41 more hours of sunshine than the October average.</p>
+      <div class="banner-ad">
+        <img src="http://tpc.googlesyndication.com:8765/simgad/demo.png" alt="">
+        <span>You won't believe these 9 kitchen tricks chefs don't want you to know!</span>
+      </div>
+      <p>"I've never cut sweet peas this late," said one allotment holder. The warm spell is expected to break at the weekend, with rain moving in from the west on Saturday night.</p>
+    </article>
+    <aside class="side">
+      <div class="sidebar-ad" id="sidebar-ad"><span class="ad-label">Advertisement</span>Congratulations! You've been selected<small>Claim your free phone in the next 60 seconds</small><i>CLAIM NOW</i></div>
+      <h3>Most read</h3>
+      <ol>
+        <li>Library extends weekend opening hours</li>
+        <li>New footbridge over the mill stream opens</li>
+        <li>Under-12s reach the county cup final</li>
+      </ol>
+    </aside>
+  </div>
+
+  <div class="gdpr-banner" id="gdpr-banner">
+    <span style="flex:1">We and our 847 partners use cookies to personalise ads and measure everything you do. Choose your options.</span>
+    <button>Accept all</button><button>Manage 847 partners</button>
+  </div>
+  <img src="http://sb.scorecardresearch.com:8765/p?c1=2&amp;c2=demo" width="1" height="1" alt="">
+  <img src="http://www.facebook.com:8765/tr?id=demo&amp;ev=PageView" width="1" height="1" alt="">
+  <img src="http://bat.bing.com:8765/action/0?ti=demo" width="1" height="1" alt="">
+</body>
+</html>

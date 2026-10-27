@@ -1,0 +1,12 @@
+{
+  "name": "clearpane-tests",
+  "private": true,
+  "type": "module",
+  "description": "Optional browser tests for the extension. Not needed to build or use it.",
+  "scripts": {
+    "test": "node run.mjs && node brave-qa.mjs && node controls.mjs"
+  },
+  "dependencies": {
+    "puppeteer-core": "24.43.1"
+  }
+}

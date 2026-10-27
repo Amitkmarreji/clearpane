@@ -1,0 +1,83 @@
+{
+  "manifest_version": 3,
+  "name": "Clearpane",
+  "version": "1.0.0",
+  "description": "Free, open-source ad and tracker blocker. Blocks ads, trackers, malware sites and cookie pop-ups. No accounts, no data collection.",
+  "minimum_chrome_version": "121",
+  "permissions": [
+    "activeTab",
+    "declarativeNetRequest",
+    "scripting",
+    "storage"
+  ],
+  "host_permissions": [
+    "<all_urls>"
+  ],
+  "background": {
+    "service_worker": "src/background.js",
+    "type": "module"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Clearpane",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "js": [
+        "src/content/cosmetic.js"
+      ],
+      "run_at": "document_start",
+      "all_frames": true,
+      "match_about_blank": true,
+      "match_origin_as_fallback": true
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "redirects/*"
+      ],
+      "matches": [
+        "<all_urls>"
+      ]
+    }
+  ],
+  "declarative_net_request": {
+    "rule_resources": [
+      {
+        "id": "ads",
+        "enabled": true,
+        "path": "rulesets/ads.json"
+      },
+      {
+        "id": "privacy",
+        "enabled": true,
+        "path": "rulesets/privacy.json"
+      },
+      {
+        "id": "malware",
+        "enabled": true,
+        "path": "rulesets/malware.json"
+      },
+      {
+        "id": "cookies",
+        "enabled": true,
+        "path": "rulesets/cookies.json"
+      }
+    ]
+  }
+}

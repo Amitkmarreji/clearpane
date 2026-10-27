@@ -1,0 +1,186 @@
+:root {
+  --bg: #f7faf5;
+  --fg: #14231a;
+  --muted: #5b6b60;
+  --line: #dde6dc;
+  --accent: #15803d;      /* forest green */
+  --accent-deep: #0e5a2b;
+  --lime: #a3e635;        /* lime highlight */
+  --pane: #dcfce7;
+  --fog: #cfd8d1;
+  --tile: #ffffff;
+  --off: #b8c2ba;
+  --glow: rgba(163, 230, 53, .35);
+  --dots: rgba(21, 128, 61, .07);
+  --spring: cubic-bezier(.34, 1.56, .64, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  color-scheme: light dark;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #0e1a12; --fg: #e9f3eb; --muted: #9fb3a5; --line: #23362a;
+    --accent: #22a04f; --accent-deep: #0b3d1e; --pane: #c9f7d8; --fog: #4a5e50;
+    --tile: #13241a; --off: #3d5244; --glow: rgba(163, 230, 53, .22); --dots: rgba(163, 230, 53, .05);
+  }
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  width: 300px;
+  font: 13px/1.4 system-ui, -apple-system, "Segoe UI", sans-serif;
+  color: var(--fg);
+  background:
+    radial-gradient(120% 60% at 50% -10%, var(--glow), transparent 60%),
+    radial-gradient(var(--dots) 1px, transparent 1.2px) 0 0 / 12px 12px,
+    var(--bg);
+  overflow: hidden;
+}
+
+/* Entrance: each block rises in turn. */
+.rise { animation: rise .5s var(--ease-out) both; animation-delay: calc(var(--i, 0) * 60ms); }
+@keyframes rise { from { opacity: 0; transform: translateY(8px); } }
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+}
+h1 { flex: 1; margin: 0; font-size: 15px; font-weight: 700; letter-spacing: -.01em; }
+
+/* Logo: the check draws itself, then shines. */
+.logo { width: 22px; height: 22px; flex: none; }
+.logo-frame { fill: var(--accent); }
+.logo-pane { fill: var(--pane); }
+.logo-check, .logo-check-shadow { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.logo-check-shadow { stroke: var(--accent-deep); stroke-width: 9; opacity: .6; }
+.logo-check { stroke: var(--lime); stroke-width: 7; }
+.logo-check, .logo-check-shadow {
+  stroke-dasharray: 1; stroke-dashoffset: 1;
+  animation: draw .6s .25s var(--ease-out) forwards;
+}
+@keyframes draw { to { stroke-dashoffset: 0; } }
+
+.global { display: flex; align-items: center; gap: 6px; color: var(--muted); font-size: 12px; cursor: pointer; }
+main { padding: 14px 14px 12px; }
+
+.site-row { display: flex; align-items: center; gap: 8px; margin-bottom: 10px; }
+.host { flex: 1; margin: 0; font-weight: 650; font-size: 15px; word-break: break-all; }
+
+/* Status pill with a breathing dot. */
+.status {
+  display: inline-flex; align-items: center; gap: 6px; flex: none;
+  padding: 3px 9px 3px 7px; border-radius: 999px;
+  font-size: 11px; font-weight: 600;
+  color: var(--accent); background: color-mix(in srgb, var(--accent) 12%, transparent);
+  transition: color .3s, background .3s;
+}
+.status .dot { position: relative; width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 1px var(--accent); }
+.status .dot::after {
+  content: ""; position: absolute; inset: -1px; border-radius: 50%;
+  border: 2px solid var(--lime); animation: breathe 2s ease-out infinite;
+}
+@keyframes breathe { from { transform: scale(1); opacity: .9; } to { transform: scale(2.6); opacity: 0; } }
+
+/* Switches: springy knob, a pulse when switched on. */
+.site-toggle { display: flex; align-items: center; gap: 10px; cursor: pointer; user-select: none; }
+.switch input { position: absolute; opacity: 0; pointer-events: none; }
+.track {
+  width: 40px; height: 22px; border-radius: 11px; background: var(--off);
+  position: relative; transition: background .25s; flex: none;
+}
+.knob {
+  position: absolute; top: 3px; left: 3px; width: 16px; height: 16px;
+  border-radius: 50%; background: #fff; box-shadow: 0 1px 3px rgba(0,0,0,.25);
+  transition: transform .35s var(--spring), width .2s;
+}
+.switch:active .knob { width: 20px; }
+.switch input:checked + .track { background: var(--accent); animation: pulse .5s ease-out; }
+.switch input:checked + .track .knob { transform: translateX(18px); }
+.switch:active input:checked + .track .knob { transform: translateX(14px); }
+.switch input:focus-visible + .track { outline: 2px solid var(--accent); outline-offset: 2px; }
+.switch input:disabled + .track { opacity: .5; }
+@keyframes pulse { from { box-shadow: 0 0 0 0 var(--glow); } to { box-shadow: 0 0 0 8px transparent; } }
+.switch.small .track { width: 30px; height: 16px; border-radius: 8px; }
+.switch.small .knob { top: 2px; left: 2px; width: 12px; height: 12px; }
+.switch.small:active .knob { width: 15px; }
+.switch.small input:checked + .track .knob { transform: translateX(14px); }
+.switch.small:active input:checked + .track .knob { transform: translateX(11px); }
+
+/* Hero: the window graphic and the big count. */
+.hero {
+  position: relative;
+  display: flex; align-items: center; gap: 14px;
+  margin-top: 14px; padding: 14px;
+  border: 1px solid var(--line); border-radius: 14px;
+  background: linear-gradient(135deg, color-mix(in srgb, var(--lime) 14%, var(--tile)), var(--tile) 55%);
+  overflow: hidden;
+}
+.window-wrap { position: relative; width: 64px; height: 64px; flex: none; }
+.window { width: 64px; height: 64px; display: block; filter: drop-shadow(0 4px 10px color-mix(in srgb, var(--accent) 35%, transparent)); }
+.win-frame { fill: var(--accent); transition: fill .4s; }
+.win-panes rect { fill: var(--pane); transition: fill .4s; }
+.glint { fill: #fff; opacity: .75; animation: glint 3.6s 1s ease-in-out infinite; }
+@keyframes glint { 0% { transform: translateX(0); } 35%, 100% { transform: translateX(120px); } }
+.ring {
+  position: absolute; inset: 0; border-radius: 16px; pointer-events: none;
+  border: 2px solid var(--lime); opacity: 0;
+}
+.ring.go { animation: ring .6s var(--ease-out); }
+@keyframes ring { from { transform: scale(.9); opacity: 1; } to { transform: scale(1.35); opacity: 0; } }
+.window-wrap.bump { animation: bump .35s var(--spring); }
+@keyframes bump { 50% { transform: scale(1.08); } }
+
+.hero-text strong {
+  display: block; font-size: 34px; line-height: 1; font-weight: 800; letter-spacing: -.02em;
+  font-variant-numeric: tabular-nums; color: var(--accent);
+}
+.hero-text span { display: block; margin-top: 4px; color: var(--muted); font-size: 11.5px; }
+
+/* Blocked "ads" flying into the window and getting cleared. */
+.bits { position: absolute; inset: 0; pointer-events: none; }
+.bit {
+  position: absolute; left: 41px; top: 43px; width: 16px; height: 12px; border-radius: 3px;
+  background: var(--c, #f97316); opacity: 0; box-shadow: 0 2px 6px rgba(0,0,0,.18);
+  animation: suck .7s var(--ease-out) forwards; animation-delay: var(--d, 0ms);
+}
+@keyframes suck {
+  0% { opacity: 0; transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(1); }
+  15% { opacity: 1; }
+  100% { opacity: 0; transform: translate(0, 0) rotate(0) scale(.2); }
+}
+/* A tiny "AD" stripe on each bit. */
+.bit::after { content: ""; position: absolute; left: 3px; right: 5px; top: 4px; height: 2px; border-radius: 1px; background: rgba(255,255,255,.85); box-shadow: 0 3px 0 rgba(255,255,255,.6); }
+
+.counts { margin-top: 10px; }
+.counts div {
+  display: flex; align-items: baseline; gap: 8px;
+  border: 1px solid var(--line); border-radius: 10px; padding: 8px 10px; background: var(--tile);
+}
+.counts strong { font-size: 15px; font-variant-numeric: tabular-nums; }
+.counts span { color: var(--muted); font-size: 11.5px; }
+.mini { width: 16px; height: 16px; align-self: center; flex: none; }
+.mini path:first-child { fill: var(--accent); }
+.mini-check { fill: none; stroke: var(--lime); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
+
+.note { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
+footer { padding: 8px 14px 12px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); }
+
+/* Paused (off everywhere, or off for this site): the window fogs over. */
+body.paused .win-frame { fill: var(--off); }
+body.paused .win-panes rect { fill: var(--fog); }
+body.paused .glint, body.paused .logo-check { animation-play-state: paused; }
+body.paused .glint { opacity: 0; }
+body.paused .hero { background: var(--tile); }
+body.paused .hero-text strong { color: var(--muted); }
+body.paused .window { filter: none; }
+body.paused .status { color: var(--muted); background: color-mix(in srgb, var(--off) 25%, transparent); }
+body.paused .status .dot { background: var(--off); box-shadow: none; }
+body.paused .status .dot::after { animation: none; opacity: 0; }
+body.disabled .site-toggle, body.disabled .counts { opacity: .45; pointer-events: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+  .logo-check, .logo-check-shadow { stroke-dashoffset: 0; }
+}

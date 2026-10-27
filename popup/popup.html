@@ -1,0 +1,82 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Clearpane</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="rise" style="--i:0">
+    <svg class="logo" viewBox="0 0 64 64" aria-hidden="true">
+      <rect x="2" y="2" width="60" height="60" rx="15" class="logo-frame"/>
+      <rect x="11" y="11" width="19" height="19" rx="4" class="logo-pane"/>
+      <rect x="34" y="11" width="19" height="19" rx="4" class="logo-pane"/>
+      <rect x="11" y="34" width="19" height="19" rx="4" class="logo-pane"/>
+      <rect x="34" y="34" width="19" height="19" rx="4" class="logo-pane"/>
+      <path d="M17 34 L27 44 L48 21" class="logo-check-shadow" pathLength="1"/>
+      <path d="M17 33 L27 43 L48 20" class="logo-check" pathLength="1"/>
+    </svg>
+    <h1>Clearpane</h1>
+    <label class="global switch small" title="Turn blocking on or off everywhere">
+      <span id="global-label">On</span>
+      <input type="checkbox" id="global" role="switch">
+      <span class="track"><span class="knob"></span></span>
+    </label>
+  </header>
+
+  <main id="site-panel">
+    <div class="site-row rise" style="--i:1">
+      <p class="host" id="host">-</p>
+      <span class="status" id="status"><span class="dot"></span><span id="status-text">Protected</span></span>
+    </div>
+    <label class="site-toggle switch rise" style="--i:2">
+      <input type="checkbox" id="site" role="switch">
+      <span class="track"><span class="knob"></span></span>
+      <span id="site-label">Blocking is on for this site</span>
+    </label>
+
+    <section class="hero rise" style="--i:3" id="hero">
+      <div class="window-wrap">
+        <svg class="window" viewBox="0 0 64 64" aria-hidden="true">
+          <defs>
+            <clipPath id="panes">
+              <rect x="11" y="11" width="19" height="19" rx="4"/>
+              <rect x="34" y="11" width="19" height="19" rx="4"/>
+              <rect x="11" y="34" width="19" height="19" rx="4"/>
+              <rect x="34" y="34" width="19" height="19" rx="4"/>
+            </clipPath>
+          </defs>
+          <rect x="2" y="2" width="60" height="60" rx="15" class="win-frame"/>
+          <g class="win-panes">
+            <rect x="11" y="11" width="19" height="19" rx="4"/>
+            <rect x="34" y="11" width="19" height="19" rx="4"/>
+            <rect x="11" y="34" width="19" height="19" rx="4"/>
+            <rect x="34" y="34" width="19" height="19" rx="4"/>
+          </g>
+          <g clip-path="url(#panes)">
+            <g transform="rotate(25 32 32)"><rect class="glint" x="-30" y="-20" width="14" height="104"/></g>
+          </g>
+        </svg>
+        <span class="ring" id="ring"></span>
+      </div>
+      <div class="hero-text">
+        <strong id="tab-count">0</strong>
+        <span>ads and trackers blocked on this page</span>
+      </div>
+      <div class="bits" id="bits" aria-hidden="true"></div>
+    </section>
+
+    <div class="counts rise" style="--i:4">
+      <div>
+        <svg class="mini" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.4 9.4 8 11 4.6-1.6 8-6 8-11V5l-8-3z"/><path d="m8.5 12 2.5 2.5 4.5-5" class="mini-check"/></svg>
+        <strong id="rule-count">0</strong>
+        <span>filter rules active</span>
+      </div>
+    </div>
+    <p class="note" id="note" hidden></p>
+  </main>
+
+  <footer id="footer" class="rise" style="--i:5"></footer>
+  <script src="popup.js" type="module"></script>
+</body>
+</html>
