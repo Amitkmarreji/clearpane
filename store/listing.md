@@ -2,7 +2,7 @@
 
 Copy-ready text and answers for the Chrome Web Store developer dashboard.
 The same text works for Microsoft Edge Add-ons. Nothing here has been
-submitted. Fill in the `TODO` items when the GitHub repository exists.
+submitted. The source is at https://github.com/Amitkmarreji/clearpane.
 
 ## Package
 
@@ -61,8 +61,8 @@ Clearpane is an independent project. It is not affiliated with or endorsed by th
 | Marquee promo tile (optional) | `promo-marquee-1400x560.png` | 1400x560 |
 
 **Official URL:** none (no verified site yet).
-**Homepage URL:** TODO `https://github.com/<owner>/clearpane`
-**Support URL:** TODO `https://github.com/<owner>/clearpane/issues`
+**Homepage URL:** `https://github.com/Amitkmarreji/clearpane`
+**Support URL:** `https://github.com/Amitkmarreji/clearpane/issues`
 
 ## Privacy practices tab
 
@@ -96,7 +96,7 @@ Then tick all three certifications:
 - I do not use or transfer user data for purposes that are unrelated to my item's single purpose.
 - I do not use or transfer user data to determine creditworthiness or for lending purposes.
 
-**Privacy policy URL:** TODO `https://github.com/<owner>/clearpane/blob/main/PRIVACY.md`
+**Privacy policy URL:** `https://github.com/Amitkmarreji/clearpane/blob/main/PRIVACY.md`
 
 ## Distribution tab
 
@@ -107,7 +107,7 @@ Then tick all three certifications:
 
 ## Before submitting (checklist)
 
-- [ ] Create the GitHub repository and replace every `TODO <owner>` above and in `README.md`.
+- [x] Create the GitHub repository (https://github.com/Amitkmarreji/clearpane).
 - [ ] Register a Chrome Web Store developer account (one-off US$5 fee) and verify the contact email.
 - [ ] Run `node tools/build.mjs` for fresh lists, then `node tools/package.mjs`.
 - [ ] Bump `version` in `manifest.json` for every later upload.

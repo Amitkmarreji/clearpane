@@ -31,7 +31,8 @@ homepages. Details are in the [developer guide](docs/DEVELOPER.md#test-results-2
 ## Install
 
 - **Chrome Web Store:** coming soon.
-- **From source:** download or clone this repository, open
+- **From source:** [download this repository as a zip](https://github.com/Amitkmarreji/clearpane/archive/refs/heads/main.zip)
+  and unzip it (or `git clone https://github.com/Amitkmarreji/clearpane`), open
   `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**
   and choose the folder.
 
@@ -43,6 +44,12 @@ blocking built in can do (fingerprint protection, CNAME uncloaking), and a
 few advanced filter types can't be expressed in Chrome's rule format. The
 [developer guide](docs/DEVELOPER.md#known-limits-compared-with-brave-shields)
 lists exactly what is and isn't supported.
+
+## Problems and ideas
+
+If a site breaks or an ad gets through, [open an issue](https://github.com/Amitkmarreji/clearpane/issues)
+with the page address. Filter-list fixes are made upstream by the list
+maintainers; Clearpane picks them up in its next release.
 
 ## Build it yourself
 
