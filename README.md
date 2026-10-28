@@ -71,3 +71,6 @@ to their volunteer maintainers and keep their own licences: see
 [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md). Clearpane is an
 independent project and is not affiliated with Brave, uBlock Origin, EasyList
 or any other filter-list project.
+
+You can use Clearpane for anything, paid work included; the GPL only asks that changed versions you share stay open source too. The name, logo and characters aren't covered by the licence: see
+[TRADEMARKS.md](TRADEMARKS.md).
