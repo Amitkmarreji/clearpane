@@ -31,8 +31,8 @@ homepages. Details are in the [developer guide](docs/DEVELOPER.md#test-results-2
 ## Install
 
 - **Chrome Web Store:** coming soon.
-- **From source:** [download this repository as a zip](https://github.com/Amitkmarreji/clearpane/archive/refs/heads/main.zip)
-  and unzip it (or `git clone https://github.com/Amitkmarreji/clearpane`), open
+- **From source:** [download this repository as a zip](https://github.com/oddlyclevertools/clearpane/archive/refs/heads/main.zip)
+  and unzip it (or `git clone https://github.com/oddlyclevertools/clearpane`), open
   `chrome://extensions`, turn on **Developer mode**, click **Load unpacked**
   and choose the folder.
 
@@ -47,7 +47,7 @@ lists exactly what is and isn't supported.
 
 ## Problems and ideas
 
-If a site breaks or an ad gets through, [open an issue](https://github.com/Amitkmarreji/clearpane/issues)
+If a site breaks or an ad gets through, [open an issue](https://github.com/oddlyclevertools/clearpane/issues)
 with the page address. Filter-list fixes are made upstream by the list
 maintainers; Clearpane picks them up in its next release.
 
