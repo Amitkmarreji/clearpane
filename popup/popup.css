@@ -165,7 +165,10 @@ main { padding: 14px 14px 12px; }
 .mini-check { fill: none; stroke: var(--lime); stroke-width: 2.4; stroke-linecap: round; stroke-linejoin: round; }
 
 .note { margin: 12px 0 0; color: var(--muted); font-size: 12px; }
-footer { padding: 8px 14px 12px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line); }
+footer { padding: 8px 14px 12px; color: var(--muted); font-size: 11px; border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+.tea { color: var(--accent); font-weight: 600; text-decoration: none; white-space: nowrap; }
+.tea:hover { text-decoration: underline; }
 
 /* Paused (off everywhere, or off for this site): the window fogs over. */
 body.paused .win-frame { fill: var(--off); }

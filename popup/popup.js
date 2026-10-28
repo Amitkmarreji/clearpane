@@ -95,7 +95,7 @@ function render(info) {
   $('note').hidden = notes.length === 0;
   $('note').textContent = notes.join(' ');
   const built = info.builtAt ? new Date(info.builtAt).toLocaleDateString() : 'unknown';
-  $('footer').textContent = `Filter lists updated ${built} · free and open source`;
+  $('lists-date').textContent = `Lists updated ${built}`;
 }
 
 async function refresh(tab) {
