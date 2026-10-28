@@ -3,6 +3,10 @@
 **A free, open-source ad and tracker blocker for Chrome.** No accounts, no
 data collection, no "acceptable ads" deals, no paid tier.
 
+[![Buy me a tea on Ko-fi](https://img.shields.io/badge/Buy%20me%20a%20tea-Ko--fi-ff2e7e?logo=kofi&logoColor=white)](https://ko-fi.com/oddlyclevertools)
+
+It's free forever. If it makes the web nicer for you, you can buy me a tea.
+
 Clearpane blocks ads, trackers, malware sites and cookie pop-ups using the
 same community filter lists that power the best blockers: EasyList,
 EasyPrivacy, uBlock Origin's filters and Brave's lists. It's built for Chrome's
