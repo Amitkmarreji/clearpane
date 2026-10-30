@@ -84,12 +84,26 @@ async function applyScriptlets(state) {
     runAt: 'document_start',
     world: 'MAIN',
     allFrames: true,
-    persistAcrossSessions: true,
+    // Persisted registration costs Chrome time quadratic in the stored match
+    // patterns, all on the browser UI thread: ~15 s for our 83k (one call per
+    // shard: ~60 s). Session-only takes ~0.2 s, so the background re-registers
+    // on every browser start (onStartup / onInstalled) instead.
+    persistAcrossSessions: false,
   })));
 }
 
+// Runs one applyState at a time: a popup toggle during start-up would otherwise
+// race the start-up run and fail on duplicate script ids.
+let applying = Promise.resolve();
+
 /** Pushes the state into Chrome. Each part is independent, so one failure doesn't block the others. */
-export async function applyState(state) {
+export function applyState(state) {
+  const run = applying.then(() => applyStateNow(state));
+  applying = run.catch(() => {});
+  return run;
+}
+
+async function applyStateNow(state) {
   const parts = {
     rulesets: applyRulesets,
     regex: s => applyRegexRules(s.enabled),
