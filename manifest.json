@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Clearpane",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Free, open-source ad and tracker blocker. Blocks ads, trackers, malware sites and cookie pop-ups. No accounts, no data collection.",
   "minimum_chrome_version": "121",
   "permissions": [
@@ -14,7 +14,7 @@
     "<all_urls>"
   ],
   "background": {
-    "service_worker": "src/background.js",
+    "service_worker": "src/service-worker.js",
     "type": "module"
   },
   "action": {

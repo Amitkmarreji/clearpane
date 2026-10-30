@@ -86,8 +86,8 @@ async function applyScriptlets(state) {
     allFrames: true,
     // Persisted registration costs Chrome time quadratic in the stored match
     // patterns, all on the browser UI thread: ~15 s for our 83k (one call per
-    // shard: ~60 s). Session-only takes ~0.2 s, so the background re-registers
-    // on every browser start (onStartup / onInstalled) instead.
+    // shard: ~60 s). Session-only takes ~0.2 s, so applyForSession re-registers
+    // them once per browser session instead.
     persistAcrossSessions: false,
   })));
 }
@@ -101,6 +101,25 @@ export function applyState(state) {
   const run = applying.then(() => applyStateNow(state));
   applying = run.catch(() => {});
   return run;
+}
+
+let sessionRun = null;
+
+/**
+ * Applies the state once per browser session (session-only scriptlets are gone
+ * after a restart). The flag lives in storage.session, which Chrome clears on
+ * restart and on extension reload or update.
+ */
+export function applyForSession() {
+  sessionRun ??= (async () => {
+    const { appliedThisSession } = await chrome.storage.session.get('appliedThisSession');
+    if (appliedThisSession) return null;
+    const errors = await applyState(await getState());
+    await chrome.storage.session.set({ appliedThisSession: true });
+    await chrome.storage.local.set({ lastApplyErrors: errors });
+    return errors;
+  })();
+  return sessionRun;
 }
 
 async function applyStateNow(state) {

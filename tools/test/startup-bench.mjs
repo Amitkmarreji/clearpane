@@ -105,7 +105,8 @@ const server = await serve();
 const url = `http://127.0.0.1:${server.address().port}/`;
 const results = [];
 for (let i = 0; i < RUNS; i++) {
-  const profile = mkdtempSync(join(tmpdir(), 'cp-bench-'));
+  // BENCH_PROFILE reuses an existing throwaway profile (e.g. one an older build left behind).
+  const profile = process.env.BENCH_PROFILE || mkdtempSync(join(tmpdir(), 'cp-bench-'));
   const cold = await launchOnce(profile, url);
   await sleep(1500);
   const warm = await launchOnce(profile, url);

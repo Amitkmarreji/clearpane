@@ -1,19 +1,22 @@
 // Service worker: wires settings, cosmetic filtering and the counter to
 // Chrome's events and to messages from the content script and popup.
-import { getState, setEnabled, setSiteAllowed, applyState } from './bg/state.js';
+import { getState, setEnabled, setSiteAllowed, applyForSession } from './bg/state.js';
 import { handleInit, handleTokens } from './bg/cosmetic.js';
 import { blockedOnTab, showBadgeCounts } from './bg/counter.js';
 import { hostnameOf, isAllowlisted, siteKey } from './shared/hosts.js';
 
+// Every worker start checks that this session's state is applied, not only
+// onInstalled/onStartup: Chrome can start a new worker after those events
+// fired (Clearpane Browser loads the extension anew on every launch, and a
+// renamed worker misses that launch's onInstalled).
+applyForSession();
+
 chrome.runtime.onInstalled.addListener(async () => {
-  const errors = await applyState(await getState());
-  await chrome.storage.local.set({ lastApplyErrors: errors });
+  await applyForSession();
   await showBadgeCounts();
 });
 
-chrome.runtime.onStartup.addListener(async () => {
-  await applyState(await getState());
-});
+chrome.runtime.onStartup.addListener(() => applyForSession());
 
 /** Filtering applies to a frame unless blocking is off globally or for the top-level site. */
 async function filteringOn(sender) {
